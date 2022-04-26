@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react';
-import { connect } from 'umi';
-import moment from 'moment';
+import { FC, useState, useEffect } from 'react';
+import { connect, ConnectProps, ProductsModelState } from 'umi';
 import { Card, Table, Popconfirm, Button } from 'antd';
+import moment from 'moment';
+interface ProductsProps extends ConnectProps {
+  products: ProductsModelState;
+}
 
-function Products({ dispatch, products }) {
+const Products: FC<ProductsProps> = ({ dispatch, products }) => {
   const [handledProducts, setHandledProducts] = useState([]);
   const productColumns = [
     {
@@ -15,14 +18,15 @@ function Products({ dispatch, products }) {
       title: '生产日期',
       dataIndex: 'startTime',
       key: 'startTime',
-      sorter: (a, b) => moment(a.startTime).valueOf() - moment(b.startTime).valueOf() 
+      sorter: (a, b) =>
+        moment(a.startTime).valueOf() - moment(b.startTime).valueOf(),
     },
     {
       title: '保质期',
       dataIndex: 'expiration',
       key: 'expiration',
       render: (val) => `${val}天`,
-      sorter: (a, b) => a.expiration - b.expiration
+      sorter: (a, b) => a.expiration - b.expiration,
     },
     {
       title: '操作',
@@ -43,7 +47,7 @@ function Products({ dispatch, products }) {
   };
   useEffect(() => {
     dispatch({ type: 'products/getProducts' });
-  }, [])
+  }, []);
   useEffect(() => {
     const newProducts = products.map((item) => ({
       ...item,
@@ -60,8 +64,8 @@ function Products({ dispatch, products }) {
       />
     </Card>
   );
-}
+};
 Products.title = '产品管理';
-export default connect(({ products }) => ({
+export default connect(({ products }: { products: ProductsModelState }) => ({
   products,
 }))(Products);

@@ -1,6 +1,23 @@
+import { Effect, Reducer } from 'umi';
 import { getProducts, deleteProducts } from '@/services/products';
 
-export default {
+export interface ProductsModelState {
+  [index: number]: object;
+}
+
+export interface ProductsModelType {
+  namespace: 'products';
+  state: ProductsModelState;
+  reducers: {
+    update: Reducer<ProductsModelState>;
+  };
+  effects: {
+    getProducts: Effect;
+    delete: Effect;
+  };
+}
+
+const ProductsModel: ProductsModelType = {
   namespace: 'products',
   state: [],
   reducers: {
@@ -24,5 +41,7 @@ export default {
         yield put({ type: 'update', payload: res.data });
       }
     },
-  }
+  },
 };
+
+export default ProductsModel;
