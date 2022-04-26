@@ -46,7 +46,7 @@ const Products: FC<ProductsProps> = ({ dispatch, products }) => {
     });
   };
   useEffect(() => {
-    dispatch({ type: 'products/getProducts' });
+    dispatch({ type: 'products/get' });
   }, []);
   useEffect(() => {
     const newProducts = products.map((item) => ({

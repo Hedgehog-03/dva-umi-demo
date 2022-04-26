@@ -6,7 +6,7 @@ export async function getProducts() {
   });
 }
 
-export async function deleteProducts(id: number) {
+export async function deleteProduct(id: number) {
   return request('/api/products/:id', {
     method: 'POST',
     params: {

@@ -1,5 +1,5 @@
 import { Effect, Reducer } from 'umi';
-import { getProducts, deleteProducts } from '@/services/products';
+import { getProducts, deleteProduct } from '@/services/products';
 
 export interface ProductsModelState {
   [index: number]: object;
@@ -12,7 +12,7 @@ export interface ProductsModelType {
     update: Reducer<ProductsModelState>;
   };
   effects: {
-    getProducts: Effect;
+    get: Effect;
     delete: Effect;
   };
 }
@@ -21,21 +21,19 @@ const ProductsModel: ProductsModelType = {
   namespace: 'products',
   state: [],
   reducers: {
-    update(state, { payload: newState }) {
+    update(_, { payload: newState }) {
       return newState;
     },
   },
   effects: {
-    *delete(action, { call, put }) {
-      let res;
-      yield call(async () => {
-        res = await deleteProducts(action.payload);
-      });
+    // effect 的第一个参数为 action
+    *delete({ payload }, { call, put }) {
+      const res = yield call(deleteProduct, payload);
       if (res?.status === 'OK') {
         yield put({ type: 'update', payload: res.data });
       }
     },
-    *getProducts(action, { call, put }) {
+    *get(_, { call, put }) {
       const res = yield call(getProducts);
       if (res.status === 'OK') {
         yield put({ type: 'update', payload: res.data });
