@@ -1,6 +1,15 @@
 import { useState } from 'react';
 import { history, IRouteComponentProps, useModel } from 'umi';
-import { Layout, Menu, Breadcrumb, Icon, Input, Avatar, Button, message } from 'antd';
+import {
+  Layout,
+  Menu,
+  Breadcrumb,
+  Icon,
+  Input,
+  Avatar,
+  Button,
+  message,
+} from 'antd';
 import { logOut } from '@/services/users';
 import styles from './_layout.less';
 const { Header, Content, Footer, Sider } = Layout;
@@ -47,7 +56,9 @@ function LayoutDemo(props: IRouteComponentProps) {
         <Sider collapsible theme="light">
           <Menu
             theme="light"
-            defaultSelectedKeys={sessionStorage.getItem('active_menu') || 'welcome'}
+            defaultSelectedKeys={
+              sessionStorage.getItem('active_menu') || 'welcome'
+            }
             mode="inline"
             onClick={onMenuClick}
           >

@@ -12,13 +12,13 @@ function Welcome() {
         alt=""
       />
       <Modal visible={visible} centered footer={null}>
-      <img
-        id="img"
-        // onClick={() => setVisible(!visible)}
-        // style={{ cursor: 'zoom-in' }}
-        src="https://zos.alipayobjects.com/rmsportal/PPrerEAKbIoDZYr.png"
-        alt=""
-      />
+        <img
+          id="img"
+          // onClick={() => setVisible(!visible)}
+          // style={{ cursor: 'zoom-in' }}
+          src="https://zos.alipayobjects.com/rmsportal/PPrerEAKbIoDZYr.png"
+          alt=""
+        />
       </Modal>
     </div>
   );

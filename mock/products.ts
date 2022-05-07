@@ -33,7 +33,7 @@ export default {
     initialProducts = initialProducts.filter((item) => item.id !== Number(id));
     res.json({
       status: 'OK',
-      data: initialProducts
-    })
+      data: initialProducts,
+    });
   },
 };

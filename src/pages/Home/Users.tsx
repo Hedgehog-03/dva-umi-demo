@@ -20,7 +20,7 @@ function Users() {
       dataIndex: 'address',
       key: 'address',
     },
-  ]
+  ];
   const [dataSource, setDataSource] = useState();
   const handleGetUsers = useCallback(async () => {
     const res = await getUsers();
@@ -35,7 +35,7 @@ function Users() {
   }, [handleGetUsers]);
   return useAccess().isAdmin ? (
     <Card>
-      <Table rowKey='id' columns={userColumns} dataSource={dataSource}></Table>
+      <Table rowKey="id" columns={userColumns} dataSource={dataSource}></Table>
     </Card>
   ) : (
     <>您没有管理员权限</>
